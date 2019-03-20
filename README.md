@@ -67,7 +67,7 @@ If you see the button but no string, click on the button
 
 > I have included the virtual enviornment with all dependencies, so it _should_ work with little to no intervention
 
-Add API token and data center to script [main.py](https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L79-L81)
+Add API token and data center to script [main.py](https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L89-L90)
 ```python
 # NEED TO SET
 apiToken = '#########API TOKEN ###########' # hard coding API token for ease, but can set as env variable
@@ -75,7 +75,7 @@ dataCenter = '####### DATA CENTER ########' # will be the same across sites.
 ```
 
 
-Add the correct Object Ids to the python script in [main.py]https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L32-L36)
+Add the correct Object Ids to the python script in [main.py](https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L40-L43)
 ```python
 #qualtrics API object IDs
 mailingListId = "ML_###############" # NEED TO SET
@@ -84,7 +84,7 @@ libraryId = 'GR_###############'     # NEED TO SET
 surveyId = 'SV_###############'      # NEED TO SET
 ```
 
-Change the mailer options in [main.py](https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L46-L50)
+Change the mailer options in [main.py](https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L54-L57)
 ```python
 #NEED TO SET MAILER OPTIONS
 header['fromEmail'] = "noreply@qualtrics.com"
