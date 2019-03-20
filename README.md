@@ -4,8 +4,11 @@ This script and process was made following [this tutorial](https://medium.com/ka
 
 
 ### **MAKE SURE YOU HAVE QUALTRICS API ACCESS TO BE ABLE TO FIND IDs AND RUN SCRIPT**
+### **PLEASE TEST WITH SAMPLE SURVEY, MESSAGE, AND MAILING LIST TO BE SURE THIS WORKS FOR YOU**
 
-This procedure should require little to no programming experiece. It is made using:
+This procedure should require little to no programming experiece, but some knowedge of python may help with troublshooting. 
+
+It was made using:
 -  [Qualtrics API documentation](https://www.qualtrics.com/support/integrations/api-integration/overview/)
 - [Python 3.7](https://www.python.org/downloads/release/python-371/)
 - [Pycharm Community IDE](https://www.jetbrains.com/pycharm/download/)
@@ -61,9 +64,10 @@ If you see the button but no string, click on the button
 
 ## 2. Qualtrics Object IDs to python script
 > Clone or copy this repository to your system in a directroy you can remember as it will need to be referenced in the Windows Task Scheduler later
-Is 
 
-Add API token and data center to script [Main.py](https://github.com/git/git/blob/master/Main.py#L79-L81)
+> I have included the virtual enviornment with all dependencies, so it _should_ work with little to no intervention
+
+Add API token and data center to script [main.py](https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L79-L81)
 ```python
 # NEED TO SET
 apiToken = '#########API TOKEN ###########' # hard coding API token for ease, but can set as env variable
@@ -71,7 +75,7 @@ dataCenter = '####### DATA CENTER ########' # will be the same across sites.
 ```
 
 
-Add the correct Object Ids to the python script in [Main.py](https://github.com/git/git/blob/master/Main.py#L32-L36)
+Add the correct Object Ids to the python script in [main.py]https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L32-L36)
 ```python
 #qualtrics API object IDs
 mailingListId = "ML_###############" # NEED TO SET
@@ -80,7 +84,7 @@ libraryId = 'GR_###############'     # NEED TO SET
 surveyId = 'SV_###############'      # NEED TO SET
 ```
 
-Change the mailer options in [Main.py](https://github.com/git/git/blob/master/Main.py#L46-L50)
+Change the mailer options in [main.py](https://github.com/ttruty/QualtricsMailer/blob/master/main.py#L46-L50)
 ```python
 #NEED TO SET MAILER OPTIONS
 header['fromEmail'] = "noreply@qualtrics.com"
@@ -115,6 +119,7 @@ Once the script is complete you can actually just run it to send out the surveys
 5. Next move to the "Actions" tab and add the python script
 - Action should be "start a program"
 - Program/script browse to the location of the python 3.6+ python.exe
+- May under program files in the Windows(C:) drive, but may be in another location (I use Anaconda Python, you can always search for "python.exe" to find location or type "where python" in terminal).
 
 ![Task Scheduler](images/task_sch5.JPG "Task Action")
 
@@ -129,6 +134,8 @@ Once the script is complete you can actually just run it to send out the surveys
 ![Task Scheduler](images/task_sch7.JPG "Task Settings")
 
 7. Click "OK" and you will need to enter the password and you should be all set up to have automatic distributions of qualtrics surveys
+
+> *IT IS A GOOD IDEA TO TEST WITH A SAMPLE SURVEY, MESSAGE, AND MAILING LIST TO ENSURE THE DISTRIBUTION WORKS AT YOUR SITE BEFORE ROLLING OUT TO ALL PARTICIPANT*
 
 ## 4. Survey as Text
 To send a survey link to a phone as a text message, most service carriers allow this for phone. Explained [here](https://20somethingfinance.com/how-to-send-text-messages-sms-via-email-for-free/).

@@ -34,13 +34,8 @@ handler = logging.StreamHandler()
 handler.setLevel(logging.DEBUG)
 handler.setFormatter(formatter)
 root.addHandler(handler)
-
-# remember to close the handlers
-for handler in root.handlers:
-    handler.close()
-    root.removeFilter(handler)
 # end logging
-	
+
 # qualtrics API object IDs
 mailingListId = "ML_###############" # NEED TO SET
 messageId = 'MS_###############'     # NEED TO SET
@@ -79,24 +74,31 @@ def email(apiToken, dataCenter):
     data['sendDate'] = strftime('%Y-%m-%dT%H:%M:%SZ', gmtime())
     data['message'] = message
 
-    # print(data) #debug 
+    # print(data) #debug
 
     url = 'https://{0}.qualtrics.com/API/v3/distributions'.format(dataCenter)
     response = requests.post(url, json=data, headers=headers)
     # print(response.text) #debug
 
+    #logging the qualtrics message
+    root.debug(response.text)
 
 def main():
     try:
 		# NEED TO SET
         apiToken = '#########API TOKEN ###########' # hard coding API token for ease, but can set as env variable
-        dataCenter = '####### DATA CENTER ########' # will be the same across sites. 
+        dataCenter = '####### DATA CENTER ########' # will be the same across sites.
     except KeyError:
         print("set environment variables APIKEY and DATACENTER")
         sys.exit(2)
 
     # print("Sending email") #debug
     email(apiToken, dataCenter)
+
+# remember to close the handlers
+for handler in root.handlers:
+    handler.close()
+    root.removeFilter(handler)
 
 if __name__ == "__main__":
     main()
